@@ -15,12 +15,10 @@ ProductTag.init(
     },
     product_id: {
     type: DataTypes.INTEGER,
-    // references: {
-    //   model: Tag,
-    //   key:'id'
-    //   //defferable:????????
-    //   //DOUBLE CHECK THAT I DID THE FOREIGN KEY CORRECTLY
-    // }
+    references: {
+      model: 'tag',
+      key:'id'
+    }
     }
   },
   {

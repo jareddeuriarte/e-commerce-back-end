@@ -33,12 +33,10 @@ Product.init(
     },
     category_id: {
       type: DataTypes.INTEGER,
-      //   references: {
-      //   model: Category,
-      //   key: 'id'
-      //   //defferable:????????
-      //   //DOUBLE CHECK THAT I DID THE FOREIGN KEY CORRECTLY
-      // }
+        references: {
+        model: 'category',
+        key: 'id'
+      }
     },
   },
   {
