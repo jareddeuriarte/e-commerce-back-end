@@ -6,25 +6,43 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // get all products
 router.get('/', (req, res) => {
   // find all products
-  // be sure to include its associated Category and Tag data
+  Product.findAll().then((productData) => {
+    res.json(productData)
+    // be sure to include its associated Category and Tag data
+
+  })
 });
 
 // get one product
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  Product.findByPk(req.params.id).then((productData) => {
+    res.json(productData)
+    // be sure to include its associated Products
+    // be sure to include its associated Category and Tag data
+  })
+  
 });
 
 // create new product
 router.post('/', (req, res) => {
-  /* req.body should look like this...
-    {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
-    }
-  */
+  // /* req.body should look like this...
+  //   {
+  //     product_name: "Basketball",
+  //     price: 200.00,
+  //     stock: 3,
+  //     tagIds: [1, 2, 3, 4]
+  //   }
+  // */
+  Product.create({
+    product_name: req.body.product_name,
+    price: req.body.price,
+    stock: req.body.stock,
+    tagIds: req.body.tagIds
+  })
+  .then((newProduct) =>{
+    res.json(newProduct);
+  })
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -57,7 +75,11 @@ router.put('/:id', (req, res) => {
   })
     .then((product) => {
       // find all associated tags from ProductTag
-      return ProductTag.findAll({ where: { product_id: req.params.id } });
+      return ProductTag.findAll({ 
+        where: { 
+          product_id: req.params.id 
+        } 
+      });
     })
     .then((productTags) => {
       // get list of current tag_ids
@@ -91,6 +113,15 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+  Product.destory({
+    where:{
+      id:req.params.id
+    }
+  })
+  .then((deletedProduct) =>{
+    res.json(deletedProduct);
+  })
+  .catch((err) => res.json(err));
 });
 
 module.exports = router;
