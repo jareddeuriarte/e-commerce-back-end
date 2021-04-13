@@ -13,9 +13,14 @@ Given e-commerce's prodominance in the electronics industry, generating an estim
 
 ## Deployment
 - [GitHub Repo](https://github.com/jareddeuriarte/e-commerce-back-end)
+- [Demo](https://drive.google.com/file/d/12x8EAI4rP_zZEKuX5ntC2OlWsmOG4cpD/view?usp=sharing)
+
+
   
 ![back-end simulation in insomnia](assets/screenshot1.png)
 ![back-end simulation in insomnia](assets/screenshot2.png)
+
+
 
 
 ### Features
